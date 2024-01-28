@@ -1,0 +1,37 @@
+# Use postgres/example user/password credentials
+version: "3.1"
+
+services:
+  database:
+    image: postgres
+    restart: always
+    container_name: helena-app-database
+    environment:
+      - POSTGRES_PASSWORD=database
+      - POSTGRES_USER=database
+      - POSTGRES_DB=database
+    ports:
+      - 5432:5432
+
+  node:
+    build: ./backend
+    restart: always
+    container_name: helena-app-backend
+
+    environment:
+      - DATABASE_URL=postgresql://database:database@database:5432/database?schema=public
+    volumes:
+      - .:/app
+    ports:
+      - 3000:3000
+    depends_on:
+      - database
+
+  reactapp:
+    build: ./frontend
+    restart: always
+    container_name: helena-app-frontend
+    ports:
+      - "8080:8080"
+    depends_on:
+      - node

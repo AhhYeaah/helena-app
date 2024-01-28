@@ -1,0 +1,29 @@
+@keyframes slow-fade-out {
+  0% {
+    opacity: 1;
+  }
+  99% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0;
+    display: none;
+  }
+}
+
+@keyframes slow-fade-in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.slow-fade-out {
+  animation: slow-fade-out 0.5s 0.5s ease-in-out forwards;
+}
+
+.slow-fade-in {
+  animation: slow-fade-in 0.5s ease-in-out forwards;
+}
