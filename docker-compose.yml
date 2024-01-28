@@ -30,6 +30,8 @@ services:
   reactapp:
     build: ./frontend
     restart: always
+    environment:
+      - VITE_API_URL=http://node:3000
     container_name: helena-app-frontend
     ports:
       - "8080:8080"
